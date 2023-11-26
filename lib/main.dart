@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:weather_app/pages/weather_page.dart';
+import 'package:weather_app/pages/home.dart';
 
 Future main() async {
   await dotenv.load(fileName: '.env');
@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
+      // theme: ThemeData.dark(),
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: Colors.blueGrey[900],
       ),
-      home: const WeatherPage(),
+      home: Home(),
     );
   }
 }

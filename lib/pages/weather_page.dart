@@ -5,7 +5,9 @@ import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/services/weather_service.dart';
 
 class WeatherPage extends StatefulWidget {
-  const WeatherPage({super.key});
+  final String cityName;
+
+  const WeatherPage({Key? key, required this.cityName}) : super(key: key);
 
   @override
   State<WeatherPage> createState() => _WeatherPageState();
@@ -20,10 +22,13 @@ class _WeatherPageState extends State<WeatherPage> {
 
   // fetch weather
   _fetchWeather() async {
-    // get Weather for city
-    String cityName = await _weatherService.getCurrentCity();
-    // get weather city
+
+    var cityName = widget.cityName;
+
     try {
+      if (cityName == '') {
+        cityName = await _weatherService.getCurrentCity();
+      }
       final weather = await _weatherService.getWeather(cityName);
       setState(() {
         _weather = weather;
