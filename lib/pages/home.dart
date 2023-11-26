@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:weather_app/pages/cities.dart';
 import 'package:weather_app/pages/weather_page.dart';
 
 class Home extends StatefulWidget {
@@ -20,7 +21,7 @@ class _HomeState extends State<Home> {
           WeatherPage(
             cityName: cityName,
           ),
-          Container(color: Colors.red),
+          Cities(),
         ][currentPageIndex],
         bottomNavigationBar: Container(
           color: Colors.blueGrey.shade800,
