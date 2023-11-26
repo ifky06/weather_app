@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
 import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/services/weather_service.dart';
@@ -22,7 +23,6 @@ class _WeatherPageState extends State<WeatherPage> {
 
   // fetch weather
   _fetchWeather() async {
-
     var cityName = widget.cityName;
 
     try {
@@ -76,11 +76,23 @@ class _WeatherPageState extends State<WeatherPage> {
       body: Center(
         child: Column(
             // center the content
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               // city name
-              Text(
-                _weather?.cityName ?? 'Loading...',
+              Column(
+                children: [
+                  Icon(
+                    Icons.location_on,
+                    size: 30,
+                    color: Colors.grey.shade600,
+                  ),
+                  Text(_weather?.cityName ?? 'Loading...',
+                      style: GoogleFonts.oswald(
+                        fontSize: 30,
+                        // fontWeight: FontWeight.re,
+                        color: Colors.grey.shade600,
+                      )),
+                ],
               ),
               // animation
               Lottie.asset(
@@ -91,10 +103,12 @@ class _WeatherPageState extends State<WeatherPage> {
               ),
 
               // Temperature
-              Text('${_weather?.temperature.round() ?? 0}°C'),
-
-              // weather condition
-              Text(_weather?.mainCondition ?? 'Loading...'),
+              Text('${_weather?.temperature.round() ?? 0}°',
+                  style: GoogleFonts.oswald(
+                    fontSize: 80,
+                    fontWeight: FontWeight.w400,
+                    color: Colors.grey.shade600,
+                  )),
             ]),
       ),
     );
